@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  background-size: cover;
+  color: #000000;
+}
+
+.time-h, .time-d {
+  font-size: 4rem;
+}
+
+h1 {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.focus {
+  min-width: 100px;
+  min-height: 20px;
+  background-color: orange;
+}
+
+@media (max-width: 700px) {
+  .time-h, .time-h {
+    font-size: 6rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
