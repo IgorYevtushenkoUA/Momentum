@@ -114,8 +114,9 @@ function setFocus(e = "keypress") {
 function setEmptyFocus(e) {
     focus.textContent = ""
     focus.style.minWidth = "100px"
-    focus.style.position = "fixed"
+    // focus.style.position = "inherit"
 }
+//position: absolute | fixed | relative | static | inherit
 
 
 // PHOTOS
