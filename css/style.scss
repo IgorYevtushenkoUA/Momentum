@@ -109,8 +109,9 @@ button:hover {
     }
   }
 
-  h1 {
+  .greeting {
     margin-bottom: 3rem;
+    font-size: 45px;
   }
 
   h2 {
@@ -123,6 +124,14 @@ button:hover {
     min-height: 20px;
     border-bottom: 2px solid orange;
   }
+
+  .focus-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
 }
 
 .modal-window-photos,
@@ -218,11 +227,26 @@ button:hover {
 @media (max-width: 650px) {
 
   .main {
+    align-items: end;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 90px 0 3rem 0px;
+
     .time {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+
       .time-h, .time-d {
         font-size: 2rem;
       }
     }
+
+    .greeting {
+      text-align: left;
+      font-size: 30px;
+    }
+
   }
 
 

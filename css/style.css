@@ -80,8 +80,9 @@ button:hover {
 .main .time .time-h, .main .time .time-d {
   font-size: 4rem;
 }
-.main h1 {
+.main .greeting {
   margin-bottom: 3rem;
+  font-size: 45px;
 }
 .main h2 {
   margin-bottom: 0.5rem;
@@ -91,6 +92,11 @@ button:hover {
   min-width: 100px;
   min-height: 20px;
   border-bottom: 2px solid orange;
+}
+.main .focus-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-window-photos,
@@ -163,8 +169,23 @@ button:hover {
   }
 }
 @media (max-width: 650px) {
+  .main {
+    align-items: end;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 90px 0 3rem 0px;
+  }
+  .main .time {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
   .main .time .time-h, .main .time .time-d {
     font-size: 2rem;
+  }
+  .main .greeting {
+    text-align: left;
+    font-size: 30px;
   }
 
   .modal-window-photos .photos-card {
