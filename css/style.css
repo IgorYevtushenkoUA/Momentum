@@ -52,11 +52,32 @@ button:hover {
 }
 .header .quote-block {
   display: grid;
-  grid-template-columns: 7fr 3fr;
+  grid-template-columns: 7fr 64px;
   margin-top: 15px;
+  text-align: right;
+  align-items: center;
+}
+.header .quote-block button {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  width: 64px;
+  height: 64px;
+}
+.header .quote-block button img {
+  background: transparent;
+  width: 64px;
+  height: 64px;
+  margin-top: -5px;
+  margin-left: -5px;
 }
 
-.main .time-h, .main .time-d {
+.main .time {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.main .time .time-h, .main .time .time-d {
   font-size: 4rem;
 }
 .main h1 {
@@ -142,6 +163,10 @@ button:hover {
   }
 }
 @media (max-width: 650px) {
+  .main .time .time-h, .main .time .time-d {
+    font-size: 2rem;
+  }
+
   .modal-window-photos .photos-card {
     grid-template-columns: 1fr;
   }

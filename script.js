@@ -2,7 +2,7 @@
 const DAY = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const PHOTOS_NUMBER = 20
-
+const HOUR = 12
 
 let time_h = document.querySelector('.time-h'),
     time_d = document.querySelector('.time-d'),
@@ -30,6 +30,8 @@ function showTime() {
     let hour = today.getHours()
     let min = today.getMinutes()
     let sec = today.getSeconds();
+
+    hour = HOUR
 
     time_h.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
     time_d.innerHTML = `${getDayName(dayName)}<span>,</span>${(day)}<span> </span>${getMonth(month)}`;
@@ -163,9 +165,15 @@ function fillModalWindowWithPhotos() {
         let wallpaper = background_wallpaper[i]
         wallpaper.addEventListener('click', function (e) {
             wallpaperIndex = e.target.id
+            changeBackgroundWallpaper(wallpaperIndex)
+            changePhotosOrder(wallpaperIndex)
+            document.getElementById("modal-window-photos").style.display = "none";
         })
     }
 }
+
+
+
 
 btn_ok_photo.addEventListener("click", function () {
     if (wallpaperIndex !== -1) {
@@ -192,15 +200,20 @@ function setWallpaper() {
     let hour = today.getHours()
     let min = today.getMinutes()
     let sec = today.getSeconds()
+
+    hour = HOUR
+
     // утро 6:00-12:00,
     if (hour >= 6 && hour < 12) {
         greeting.textContent = 'Good Morning, ';
+        document.body.style.color = 'white';
     }
     // день 12:00-18:00,
     if (hour >= 12 && hour < 18) {
         document.body.style.backgroundImage =
             "url('./assets/images/day/')";
         greeting.textContent = 'Good Afternoon, ';
+        document.body.style.color = 'white';
     }
     // вечер 18:00-24:00,
     if (hour >= 18 && hour <= 23) {
