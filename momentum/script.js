@@ -10,9 +10,10 @@ let time_h = document.querySelector('.time-h'),
     username = document.querySelector(".username"),
     focus = document.querySelector(".focus"),
     btn_photos = document.querySelector(".btn-photos"),
-
     btn_ok = document.querySelector(".btn-ok"),
-    btn_cancel = document.querySelector(".btn-cancel")
+    btn_cancel = document.querySelector(".btn-cancel"),
+    quote = document.querySelector('.quote'),
+    btn_quote = document.querySelector('.btn_quote')
 
 let wallpaperIndex = -1
 let photos = []
@@ -103,7 +104,27 @@ function setEmptyFocus(e) {
 }
 
 
+// PHOTOS
 
+/**
+ * generate random photos list
+ */
+function generateDayPhotos() {
+    let morning = "./assets/images/morning/",
+        day = "./assets/images/day/",
+        evening = "./assets/images/evening/",
+        night = "./assets/images/night/"
+    let timeslot = [morning, day, evening, night]
+
+    for (let i = 0; i < 4; i++) {
+        let randStartNum = Math.ceil(Math.random() * PHOTOS_NUMBER) + 1
+        for (let j = randStartNum; j < randStartNum + 6; j++) {
+            let index = j !== PHOTOS_NUMBER ? j % PHOTOS_NUMBER : 20
+            photos.push(timeslot[i] + addZero(index) + ".jpg")
+        }
+    }
+
+}
 
 btn_photos.addEventListener("click", function (e) {
     let modal = document.getElementById("modal");
@@ -149,12 +170,14 @@ function changeBackgroundWallpaper(wallpaperIndex) {
     // getImage(wallpaperIndex)
     document.body.style.backgroundImage = `url(${photos[wallpaperIndex]})`;
 }
+
 function changePhotosOrder(wallpaperIndex) {
     let temp = []
     for (let i = wallpaperIndex; i < photos.length; i++) temp.push(photos[i])
     for (let i = 0; i < wallpaperIndex; i++) temp.push(photos[i])
     photos = temp
 }
+
 function setWallpaper() {
     let today = new Date()
     let hour = today.getHours()
@@ -196,26 +219,27 @@ btn_cancel.addEventListener("click", function () {
 })
 
 
+// QUOTES
+// https://type.fit/api/quotes - список цитат   [
+//   {
+//     "text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+//     "author": "Thomas Edison"
+//   },
+//https://api.adviceslip.com/advice - рандомно одну цитату
+// {"slip": { "id": 60, "advice": "Fail. Fail again. Fail better."}}
+
+//todo del comment
+btn_quote.addEventListener("click", function () {
+    // getQuote()
+})
 
 
-
-/**
- * generate random photos list
- */
-function generateDayPhotos() {
-    let morning = "./assets/images/morning/",
-        day = "./assets/images/day/",
-        evening = "./assets/images/evening/",
-        night = "./assets/images/night/"
-    let timeslot = [morning, day, evening, night]
-
-    for (let i = 0; i < 4; i++) {
-        let randStartNum = Math.ceil(Math.random() * PHOTOS_NUMBER) + 1
-        for (let j = randStartNum; j < randStartNum + 6; j++) {
-            let index = j !== PHOTOS_NUMBER ? j % PHOTOS_NUMBER : 20
-            photos.push(timeslot[i] + addZero(index) + ".jpg")
-        }
-    }
+async function getQuote() {
+    const url = `https://api.adviceslip.com/advice`
+    const res = await fetch(url)
+    const data = await res.json()
+    quote.textContent = data.slip.advice
+    console.log(quote.textContent)
 
 }
 
@@ -230,4 +254,6 @@ getUserName()
 getFocus()
 generateDayPhotos()
 setWallpaper()
+//todo del comment
+// getQuote()
 console.log(photos)
