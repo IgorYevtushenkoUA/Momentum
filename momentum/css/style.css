@@ -33,13 +33,14 @@ h2 {
   opacity: 0.8;
 }
 
-.focus {
+.focus, .city {
   min-width: 100px;
   min-height: 20px;
   background-color: orange;
 }
 
-.modal {
+.modal-window-photos,
+.modal-window-weather {
   display: none;
   position: fixed;
   z-index: 1;
@@ -51,7 +52,8 @@ h2 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.container {
+.container-photos,
+.container-weather {
   background-color: #fefefe;
   margin: 10% auto;
   padding: 20px;

@@ -10,10 +10,14 @@ let time_h = document.querySelector('.time-h'),
     username = document.querySelector(".username"),
     focus = document.querySelector(".focus"),
     btn_photos = document.querySelector(".btn-photos"),
-    btn_ok = document.querySelector(".btn-ok"),
-    btn_cancel = document.querySelector(".btn-cancel"),
+    btn_ok_photo = document.querySelector(".btn-ok-photo"),
+    btn_cancel_photo = document.querySelector(".btn-cancel-photo"),
     quote = document.querySelector('.quote'),
-    btn_quote = document.querySelector('.btn_quote')
+    btn_quote = document.querySelector('.btn_quote'),
+    btn_ok_weather = document.querySelector('.btn-ok-weather'),
+    btn_weather_icon = document.querySelector('.weather-icon'),
+    city = document.querySelector('.city')
+
 
 let wallpaperIndex = -1
 let photos = []
@@ -35,6 +39,10 @@ function showTime() {
     }
     if (document.activeElement !== document.getElementById("focus")) {
         getFocus()
+    }
+
+    if (document.activeElement !== document.getElementById("city")) {
+        getCity()
     }
 
     // if (min === 0 && sec === 0) {
@@ -123,11 +131,10 @@ function generateDayPhotos() {
             photos.push(timeslot[i] + addZero(index) + ".jpg")
         }
     }
-
 }
 
 btn_photos.addEventListener("click", function (e) {
-    let modal = document.getElementById("modal");
+    let modal = document.getElementById("modal-window-photos");
     wallpaperIndex = -1
     fillModalWindowWithPhotos()
     modal.style.display = "block"
@@ -156,18 +163,16 @@ function fillModalWindowWithPhotos() {
     }
 }
 
-btn_ok.addEventListener("click", function () {
-    debugger
+btn_ok_photo.addEventListener("click", function () {
     if (wallpaperIndex !== -1) {
         changeBackgroundWallpaper(wallpaperIndex)
         changePhotosOrder(wallpaperIndex)
-        document.getElementById("modal").style.display = "none";
+        document.getElementById("modal-window-photos").style.display = "none";
     } else
         alert("Choose image or click cancel")
 })
 
 function changeBackgroundWallpaper(wallpaperIndex) {
-    // getImage(wallpaperIndex)
     document.body.style.backgroundImage = `url(${photos[wallpaperIndex]})`;
 }
 
@@ -214,12 +219,13 @@ function setWallpaper() {
 
 }
 
-btn_cancel.addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
+btn_cancel_photo.addEventListener("click", function () {
+    document.getElementById("modal-window-photos").style.display = "none";
 })
 
 
 // QUOTES
+
 // https://type.fit/api/quotes - список цитат   [
 //   {
 //     "text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
@@ -233,7 +239,6 @@ btn_quote.addEventListener("click", function () {
     // getQuote()
 })
 
-
 async function getQuote() {
     const url = `https://api.adviceslip.com/advice`
     const res = await fetch(url)
@@ -243,15 +248,91 @@ async function getQuote() {
 
 }
 
+// WEATHER
+btn_weather_icon.addEventListener('click', function () {
+    let modal = document.getElementById("modal-window-weather")
+    modal.style.display = "block"
+
+    showWeather()
+
+
+    window.onclick = function (event) {
+        if (event.target == modal)
+            modal.style.display = "none"
+    }
+})
+
+function getCity() {
+    if (localStorage.getItem('city') === null) {
+        city.textContent = '[Enter City]'
+    } else {
+        city.textContent = localStorage.getItem('city')
+    }
+}
+
+function setCity(e) {
+    if (e.type === 'keypress') {
+        if (e.which == 13 || e.keyCode == 13) {
+            localStorage.setItem('city', e.target.innerText)
+        } else {
+            city.textContent = e.target.innerText
+        }
+    }
+}
+
+function setEmptyCity(e) {
+    city.textContent = ""
+}
+
+function showWeather() {
+    if (localStorage.getItem('city') === null) {
+        alert("Enter city")
+    } else {
+        let city = localStorage.getItem('city')
+        // console.log(data.main.temp)
+        // console.log(data.main.humidity)
+        // console.log(data.wind.speed)
+        getWeather(city)
+    }
+}
+
+async function getWeather(city) {
+    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=ru&appid=d3a63f3214889816d993cf9d381c1414&units=metric`
+    // const res = await fetch(url);
+    // const data = await res.json();
+    // console.log(data)
+    // console.log(data.weather)
+
+    let weather_block = document.querySelector(".weather-block")
+    let card = "<div class='weather-card'>"
+    card += "<img src='./assets/icons/weather.png' width='50px' height='50px'>"
+    card += "<h1>" + city + "</h1>"
+    card += "<h3 >Temperature ::  " + "20?????" +  "</h3>"
+    card += "<h3 >Humidity ::  " + "87?????" +  "</h3>"
+    card += "<h3 >Winter Speed :: " + "3?????"  + "</h3>"
+    card += "</div>"
+    weather_block.innerHTML = card
+
+}
+
+
+btn_ok_weather.addEventListener('click', function () {
+    let modal = document.getElementById("modal-window-weather")
+    modal.style.display = "none"
+})
+
 
 username.addEventListener("keypress", setUserName)
 username.addEventListener("click", setEmptyName)
 focus.addEventListener("keypress", setFocus)
 focus.addEventListener("click", setEmptyFocus)
+city.addEventListener('keypress', setCity)
+city.addEventListener('click', setEmptyCity)
 
 showTime()
 getUserName()
 getFocus()
+getCity()
 generateDayPhotos()
 setWallpaper()
 //todo del comment

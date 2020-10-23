@@ -49,6 +49,9 @@
 <button class="btn-photos" id="btn-photos">Photos</button>
 <span class="quote" id="quote"></span>
 <button class="btn_quote" id="btn_quote">Change Quote</button>
+<img src="./assets/icons/weather.png" width="50px" height="50px" alt="weather_icon" class="weather-icon" id="weather-icon">
+<span class="city" id="city" contenteditable="true"></span>
+
 
 <time class="time time-h" id="time-h"></time>
 <time class="time time-d" id="time-d"></time>
@@ -60,15 +63,26 @@
 <h2 class="focus" id="focus" contenteditable="true"></h2>
 
 
-<div class="modal modal-window-photos" id="modal">
-    <div class="container">
+<div class="modal modal-window-photos" id="modal-window-photos">
+    <div class="container-photos">
         <div class="modal-content">
             <!--all photoes from photos list -->
             <div class="photos-card"></div>
         </div>
         <div class="btns">
-            <button class="btn-ok">OK</button>
-            <button class="btn-cancel">Cancel</button>
+            <button class="btn-ok-photo">OK</button>
+            <button class="btn-cancel-photo">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-window-weather" id="modal-window-weather">
+    <div class="container-weather">
+        <div class="weather-block">
+
+        </div>
+        <div class="btns">
+            <button class="btn-ok-weather">OK</button>
         </div>
     </div>
 </div>
