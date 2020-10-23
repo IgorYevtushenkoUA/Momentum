@@ -102,7 +102,7 @@ function setFocus(e = "keypress") {
     if (e.type === 'keypress') {
         if (e.which === 13 || e.keyCode == 13) {
             localStorage.setItem('focus', e.target.innerText)
-            username.blur()
+            focus.blur()
         }
     } else {
         focus.textContent = e.target.innerText
@@ -275,6 +275,7 @@ function setCity(e) {
     if (e.type === 'keypress') {
         if (e.which == 13 || e.keyCode == 13) {
             localStorage.setItem('city', e.target.innerText)
+            city.blur()
         } else {
             city.textContent = e.target.innerText
         }
@@ -283,8 +284,8 @@ function setCity(e) {
 
 function setEmptyCity(e) {
     city.textContent = ""
-    city.style.minWidth = "100px"
-    city.style.position = "fixed"
+    city.style.minWidth = "64px"
+// city.style.position = "absolute"
 }
 
 function showWeather() {
@@ -308,7 +309,7 @@ async function getWeather(city) {
 
     let weather_block = document.querySelector(".weather-block")
     let card = "<div class='weather-card'>"
-    card += "<img src='./assets/icons/weather.png' width='50px' height='50px'>"
+    card += "<img src='./assets/icons/global-warming.png' width='50px' height='50px'>"
     card += "<h1>" + city + "</h1>"
     card += "<h3 >Temperature ::  " + "20?????" +  "</h3>"
     card += "<h3 >Humidity ::  " + "87?????" +  "</h3>"
