@@ -10,58 +10,40 @@
 </head>
 <body>
 
-<!--<header class="header">-->
-<!--    <div class="container-weather" id="container-weather">-->
-<!--        Weather block-->
-<!--&lt;!&ndash;        <img src="" alt="weather-icon">&ndash;&gt;-->
-<!--&lt;!&ndash;        <span>temperature</span>&ndash;&gt;-->
-<!--&lt;!&ndash;        <span>влажность воздуха</span>&ndash;&gt;-->
-<!--&lt;!&ndash;        <span>скорость ветра</span>&ndash;&gt;-->
-<!--    </div>-->
+<header class="header">
 
-<!--    <div class="container-quote" id="container-quote">-->
-<!--        Цитата-->
-<!--    </div>-->
-<!--</header>-->
+    <button class="btn-photos" id="btn-photos">Change Photo</button>
 
-<!--<main class="main">-->
-<!--    <div class="container-time">-->
-<!--        <time class="time time-h" id="time-h"></time>-->
-<!--        <time class="time time-d" id="time-d"></time>-->
-<!--    </div>-->
+    <div class="photo-block">
+        <img src="./assets/icons/weather.png" width="50px" height="50px" alt="weather_icon" class="weather-icon"
+             id="weather-icon">
+        <span class="city" id="city" contenteditable="true"></span>
+    </div>
 
-<!--    <div class="container-username">-->
-<!--        <span class="greeting">Hello</span>-->
-<!--        <span class="username" contenteditable="true"></span>-->
-<!--    </div>-->
+    <div class="quote-block">
+        <span class="quote" id="quote">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+        <button class="btn_quote" id="btn_quote">Change Quote</button>
+    </div>
 
-<!--    <div class="container-greeting">-->
-<!--        <h2>What Is Your Focus For Today?</h2>-->
-<!--        <h2 class="focus" contenteditable="true"></h2>-->
-<!--    </div>-->
+</header>
 
-<!--</main>-->
+<main class="main">
+    <div class="time">
+        <time class="time time-h" id="time-h"></time>
+        <time class="time time-d" id="time-d"></time>
+    </div>
+    <div class="greeting">
+        <h1>
+            <span class="greeting-phrase">Hello </span>
+            <span class="username" id="username" contenteditable="true"></span>
+        </h1>
+    </div>
+    <h2>What Is Your Focus For Today?</h2>
+    <h2 >
+        <span class="focus" id="focus" contenteditable="true"></span>
+    </h2>
 
-<!--<footer class="footer">-->
-<!--    <button>Setting</button>-->
-<!--</footer>-->
-
-<button class="btn-photos" id="btn-photos">Photos</button>
-<span class="quote" id="quote"></span>
-<button class="btn_quote" id="btn_quote">Change Quote</button>
-<img src="./assets/icons/weather.png" width="50px" height="50px" alt="weather_icon" class="weather-icon" id="weather-icon">
-<span class="city" id="city" contenteditable="true"></span>
-
-
-<time class="time time-h" id="time-h"></time>
-<time class="time time-d" id="time-d"></time>
-<h1>
-    <span class="greeting">Hello </span>
-    <span class="username" id="username" contenteditable="true"></span>
-</h1>
-<h2>What Is Your Focus For Today?</h2>
-<h2 class="focus" id="focus" contenteditable="true"></h2>
-
+</main>
 
 <div class="modal modal-window-photos" id="modal-window-photos">
     <div class="container-photos">
@@ -69,7 +51,7 @@
             <!--all photoes from photos list -->
             <div class="photos-card"></div>
         </div>
-        <div class="btns">
+        <div class="buttons">
             <button class="btn-ok-photo">OK</button>
             <button class="btn-cancel-photo">Cancel</button>
         </div>

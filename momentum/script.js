@@ -6,7 +6,7 @@ const PHOTOS_NUMBER = 20
 
 let time_h = document.querySelector('.time-h'),
     time_d = document.querySelector('.time-d'),
-    greeting = document.querySelector(".greeting"),
+    greeting = document.querySelector(".greeting-phrase"),
     username = document.querySelector(".username"),
     focus = document.querySelector(".focus"),
     btn_photos = document.querySelector(".btn-photos"),
@@ -86,6 +86,8 @@ function setUserName(e = "keypress") {
 
 function setEmptyName(e) {
     username.textContent = ""
+    username.style.minWidth = "100px"
+    username.style.position = "fixed"
 }
 
 function getFocus() {
@@ -109,6 +111,8 @@ function setFocus(e = "keypress") {
 
 function setEmptyFocus(e) {
     focus.textContent = ""
+    focus.style.minWidth = "100px"
+    focus.style.position = "fixed"
 }
 
 
@@ -213,10 +217,7 @@ function setWallpaper() {
         document.body.style.color = 'white';
     }
 
-    let rand = Math.ceil(Math.random() * 24)
-    // document.body.style.backgroundImage = `url(${photos[hour]})`;
-    document.body.style.backgroundImage = `url(${photos[rand]})`;
-
+    document.body.style.backgroundImage = `url(${photos[hour]})`;
 }
 
 btn_cancel_photo.addEventListener("click", function () {
@@ -282,6 +283,8 @@ function setCity(e) {
 
 function setEmptyCity(e) {
     city.textContent = ""
+    city.style.minWidth = "100px"
+    city.style.position = "fixed"
 }
 
 function showWeather() {
