@@ -47,9 +47,8 @@ function showTime() {
         getCity()
     }
 
-    // if (min === 0 && sec === 0) {
-    if (sec === 35) {
-        // setWallpaper()
+    if (min === 0 && sec === 0) {
+        setWallpaper()
     }
 
     setTimeout(showTime, 1000);
@@ -114,7 +113,6 @@ function setFocus(e = "keypress") {
 function setEmptyFocus(e) {
     focus.textContent = ""
     focus.style.minWidth = "100px"
-    // focus.style.position = "inherit"
 }
 //position: absolute | fixed | relative | static | inherit
 
@@ -172,9 +170,6 @@ function fillModalWindowWithPhotos() {
         })
     }
 }
-
-
-
 
 btn_ok_photo.addEventListener("click", function () {
     if (wallpaperIndex !== -1) {
@@ -251,7 +246,7 @@ btn_cancel_photo.addEventListener("click", function () {
 
 //todo del comment
 btn_quote.addEventListener("click", function () {
-    // getQuote()
+    getQuote()
 })
 
 async function getQuote() {
@@ -315,21 +310,30 @@ function showWeather() {
 }
 
 async function getWeather(city) {
-    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=ru&appid=d3a63f3214889816d993cf9d381c1414&units=metric`
-    // const res = await fetch(url);
-    // const data = await res.json();
-    // console.log(data)
-    // console.log(data.weather)
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=ru&appid=d3a63f3214889816d993cf9d381c1414&units=metric`
+    const res = await fetch(url);
 
-    let weather_block = document.querySelector(".weather-block")
-    let card = "<div class='weather-card'>"
-    card += "<img src='./assets/icons/global-warming.png' width='50px' height='50px'>"
-    card += "<h1>" + city + "</h1>"
-    card += "<h3 >Temperature ::  " + "20?????" +  "</h3>"
-    card += "<h3 >Humidity ::  " + "87?????" +  "</h3>"
-    card += "<h3 >Winter Speed :: " + "3?????"  + "</h3>"
-    card += "</div>"
-    weather_block.innerHTML = card
+    try {
+        const data = await res.json();
+        // console.log(data)
+        // console.log(data.weather)
+
+        let weather_block = document.querySelector(".weather-block")
+        let card = "<div class='weather-card'>"
+        card += "<img src='./assets/icons/global-warming.png' width='50px' height='50px'>"
+        card += "<h1>" + city + "</h1>"
+        card += "<h3 >Temperature ::  " + data.main.temp + "</h3>"
+        card += "<h3 >Humidity ::  " + data.main.humidity + "</h3>"
+        card += "<h3 >Winter Speed :: " + data.wind.speed + "</h3>"
+        card += "</div>"
+        weather_block.innerHTML = card
+    }catch (e){
+        let weather_block = document.querySelector(".weather-block")
+        let card = "<div class='weather-card'>"
+        card += "<img src='./assets/icons/global-warming.png' width='50px' height='50px'>"
+        card += "<h1>" + "You Enter incorrect city; try again" + "</h1>"
+        weather_block.innerHTML = card
+    }
 
 }
 
